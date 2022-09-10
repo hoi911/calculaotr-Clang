@@ -47,18 +47,20 @@ int quit(char h) {
     case 'y': {
         o = 1;
         Loop = false;
-    }
         break;
+    }
     
     case 'n': {
         o = 2;
         Loop = false;
-    }
         break;
+    }
     
     default: {
         printf("y 또는 n으로 입력해주세요. (y/n) : ");
-        scanf(" %c", &h);
+        getchar();
+        h = getchar();
+        fflush(stdin);
         continue;
     }
     }
@@ -69,10 +71,10 @@ int quit(char h) {
 }
 
 int main() {
-    int a, b;
+    int a, b, i;
     char c;
     int sum, qq = 0;
-    char q = 'y';
+    char q = 0;
 
     printf("계산하고자 하는 사칙연산 식을 입력해주세요.\nEx) : 20 - 20\n");
     do {
@@ -82,10 +84,13 @@ int main() {
     sum = Calc(a, c, b);
 
     printf("계산 결과 : %d\n", sum);
-
     printf("다른 계산을 하시겠습니까? (y/n) : ");
-    scanf(" %c", &q);
 
+    /*fflush(stdin);
+    i = sizeof(getchar());*/
+    getchar();
+    q = getchar();
+    fflush(stdin);
     qq = quit(q);
 
     switch (qq)
